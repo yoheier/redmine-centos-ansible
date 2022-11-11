@@ -1,6 +1,7 @@
 # redmine-centos-ansible
 
-| :warning: CentOS 8 stream での動作のため、いつまで動作するかわかりません。自己責任での利用をお願いします。 |
+| :warning: CentOS 8 stream での動作のため、いつまで動作するかわかりません。自己責任での利用をお願いします。
+ インストールとadminでのログインは確認していますが、細かい動作は確認していません。細かいところが動かなかったらごめんなさい。 |
 | --- |
 
 最小構成でインストールしたCentOS8 streamにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
