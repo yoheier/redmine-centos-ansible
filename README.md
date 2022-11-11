@@ -63,13 +63,6 @@ ansible-playbook -i hosts site.yml
 
 10〜20分ほどでインストールが完了します。
 
-このままではエラーが発生するため、下記コマンドでgemモジュールのアップデートを行ってからhttpdを再起動してください。
-
-```
-gem update strscan
-systemctl restart httpd
-```
-
 webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
 
 
