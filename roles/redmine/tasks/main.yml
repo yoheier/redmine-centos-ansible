@@ -53,6 +53,9 @@
   become: yes
   command:
     gem update strscan
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
 
 - name: secret tokenの作成
   become: yes
