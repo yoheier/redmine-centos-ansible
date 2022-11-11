@@ -49,6 +49,11 @@
   when:
     result_test_gemfile.rc == 0
 
+- name: gemsパッケージのアップデートが必要なものの強制アップデート
+  become: yes
+  command:
+    gem update strscan
+
 - name: secret tokenの作成
   become: yes
   command:
