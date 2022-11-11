@@ -1,11 +1,13 @@
 # redmine-centos-ansible
 
-| :warning: CentOS 8の提供が2021年で終了されることが決まりました。このansible-playbookはこれ以降のRedmineのバージョンアップに対応するための更新を行いません。 |
+| :warning: CentOS 8 stream での動作のため、いつまで動作するかわかりません。自己責任での利用をお願いします。 |
 | --- |
 
-最小構成でインストールしたCentOSにRedmineを自動インストールするためのAnsibleプレイブックです。
+最小構成でインストールしたCentOS8 streamにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
 
 コマンド5個実行するだけで、あとはしばらく放置すればインストールが完了します。
+
+ファーエンドテクノロジー株式会社さんのCentOS8用のプレイブックを泥臭く書き換えています。
 
 
 ## 概要
@@ -17,7 +19,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ## システム構成
 
-* Redmine 4.0
+* Redmine 5.0
 * CentOS 8.0
 * PostgreSQL
 * Apache
@@ -25,7 +27,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ## Redmineのインストール手順
 
-インストール直後の CentOS 8.0 に root でログインし以下の操作を行ってください。
+インストール直後の CentOS 8 stream に root でログインし以下の操作を行ってください。
 
 
 ### Ansibleとgitのインストール
@@ -43,7 +45,7 @@ yum install -y policycoreutils selinux-policy-targeted firewalld sudo
 ### playbookのダウンロード
 
 ```
-git clone https://github.com/farend/redmine-centos-ansible.git
+git clone https://github.com/yoheier/redmine-centos-ansible.git
 ```
 
 ### PostgreSQLに設定するパスワードの変更
@@ -59,7 +61,16 @@ cd redmine-centos-ansible
 ansible-playbook -i hosts site.yml
 ```
 
-10〜20分ほどでインストールが完了します。webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
+10〜20分ほどでインストールが完了します。
+
+このままではエラーが発生するため、書きコマンドでgemモジュールのアップデートを行ってからhttpdを再起動してください。
+
+```
+gem update strscan
+systemctl restart httpd
+```
+
+webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
 
 
 ## ライセンス

@@ -1,8 +1,9 @@
 - name: Redmineのソースコードをチェックアウト
   become: yes
-  subversion:
-    repo={{ redmine_svn_url }}
-    dest={{ redmine_dir }}
+  ansible.builtin.git:
+    repo: https://github.com/redmine/redmine.git
+    dest: /var/lib/redmine
+    version: 5.0-stable
 
 - name: database.ymlの作成
   become: yes
