@@ -19,8 +19,8 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ## システム構成
 
-* Redmine 5.0
-* CentOS 8.0
+* Redmine 5.0 Stable (from git)
+* CentOS 8.0-stream
 * PostgreSQL
 * Apache
 
@@ -73,4 +73,4 @@ MIT License
 
 ## 作者
 
-[ファーエンドテクノロジー株式会社](http://www.farend.co.jp/)
+[ファーエンドテクノロジー株式会社](http://www.farend.co.jp/) and Fix added by yoheier(yohei-tamai@office-craft.co.jp)
