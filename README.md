@@ -1,14 +1,17 @@
 # redmine-centos-ansible
 
-| :warning: CentOS 8 stream での動作のため、いつまで動作するかわかりません。自己責任での利用をお願いします。 インストールとadminでのログインは確認していますが、細かい動作は確認していません。細かいところが動かなかったらごめんなさい。 |
+| :warning: インストールとadminでのログインは確認していますが、細かい動作は確認していません。細かいところが動かなかったらごめんなさい。 |
 | --- |
 
-最小構成でインストールしたCentOS8 streamにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
+最小構成でインストールしたCentOS8 Clone系OSにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
+
+以下OSでの動作を確認しています
+- CentOS8-stream
+- Rocky Linux 8.6 (サポート終了予定日:2029年5月31日)
 
 コマンド5個実行するだけで、あとはしばらく放置すればインストールが完了します。
 
 ファーエンドテクノロジー株式会社さんのCentOS8用のプレイブックを泥臭く書き換えています。
-
 
 ## 概要
 
@@ -16,18 +19,21 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 [Redmine 3.4をCentOS 7.3にインストールする手順](http://blog.redmine.jp/articles/3_4/install/centos/)
 
+経緯等については私のqiita記事をご参照いただければ。
+[Redmine4系をCentOS8にインストールするAnsible プレイブックを、Redmine5-stableに変更してCentOS8Clone系OSで動作するのを確認した](https://qiita.com/yoheier/items/7df934c8afe0eabf5576)
+
 
 ## システム構成
 
 * Redmine 5.0 Stable (from git)
-* CentOS 8.0-stream
+* CentOS 8.0-stream or Rocky Linux 8.6
 * PostgreSQL
 * Apache
 
 
 ## Redmineのインストール手順
 
-インストール直後の CentOS 8 stream に root でログインし以下の操作を行ってください。
+インストール直後の OSに root でログインし以下の操作を行ってください。
 
 
 ### Ansibleとgitのインストール
@@ -37,10 +43,13 @@ yum update -y
 yum install -y epel-release glibc-locale-source
 yum install -y ansible git
 
-===================== Dockerの場合は以下も実行する===================
+===================== Dockerの場合は以下も実行する===========================
 yum install -y policycoreutils selinux-policy-targeted firewalld sudo
-=====================================================================
+===========================================================================
+
 ```
+
+Rocky Linuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
 
 ### playbookのダウンロード
 
@@ -65,6 +74,12 @@ ansible-playbook -i hosts site.yml
 
 webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
 
+## 言い訳
+AlmaLinuxもとりかかってみましたが、8.6 8.7とも、ミラーサーバのリポジトリがごちゃごちゃで、AppStreamの
+メタ情報が間違っていたりします。
+また、"Development tools"グループインストールに失敗するのでどうしたものやら、です。
+
+8.3で試してみますが、ダメだったらこのAnsbleプレイブックの対応はCentOS-streamとRocky Linuxということで。
 
 ## ライセンス
 
