@@ -27,11 +27,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ## システム構成
 
 * Redmine 5.0 Stable (from git)
-<<<<<<< HEAD
-* CentOS 8.0-stream or Rocky Linux 8.6
-=======
 * CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.3 (8.6と8.7はNGです)
->>>>>>> AlmaLinux
 * PostgreSQL
 * Apache
 
@@ -52,11 +48,6 @@ yum install -y ansible git
 yum install -y policycoreutils selinux-policy-targeted firewalld sudo
 ===========================================================================
 
-<<<<<<< HEAD
-```
-
-Rocky Linuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
-=======
 ================== AlmaLinux8.3の場合は上記ではなく下記インストールを行う======
 リポジトリ設定について、ほとんどの（全ての？）ミラーサーバは8.6以降の情報しか
 持っていないようですので、
@@ -85,7 +76,6 @@ python3 -m pip install ansible
 ```
 
 Rocky LinuxとAlmaLinuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
->>>>>>> AlmaLinux
 
 ### playbookのダウンロード
 
