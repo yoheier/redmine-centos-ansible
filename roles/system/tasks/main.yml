@@ -36,7 +36,9 @@
 
 - name: 開発ツールのインストール
   become: yes
-  yum: name='@Development Tools'
+    ansible.builtin.dnf:
+    name: '@Development Tools'
+    state: present
 
 - name: RubyとPassengerのビルドに必要な開発ツールやヘッダファイルのインストール
   become: yes
