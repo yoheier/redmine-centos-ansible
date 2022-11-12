@@ -27,7 +27,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ## システム構成
 
 * Redmine 5.0 Stable (from git)
-* CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.7
+* CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.3 (8.6と8.7はNGです)
 * PostgreSQL
 * Apache
 
@@ -53,6 +53,9 @@ yum install -y policycoreutils selinux-policy-targeted firewalld sudo
 持っていないようですので、
 8.3は、AlmaLinux公式のサーバから取得するしかないようです。
 ミラーリング設定を外して、蒸気サーバをalmalinux.repoを適当に編集してくださいｗ
+
+githubにALmaLinux8.3の検証に使った際のyumリポジトリ定義を入れてありますので参考にしていただければ。
+下記ファイルを編集です。
 
 /etc/yum.repo.d/almalinux.repo
 
