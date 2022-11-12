@@ -36,37 +36,43 @@
 
 - name: 開発ツールのインストール
   become: yes
-    ansible.builtin.dnf:
+   ansible.builtin.dnf:
     name: '@Development Tools'
     state: present
 
 - name: RubyとPassengerのビルドに必要な開発ツールやヘッダファイルのインストール
   become: yes
-  yum:
-    name='openssl-devel,readline-devel,zlib-devel,curl-devel,libyaml,libffi-devel'
+  ansible.builtin.dnf:
+    name: 'openssl-devel,readline-devel,zlib-devel,curl-devel,libyaml,libffi-devel'
+    state: present
 
 - name:  PostgreSQLとヘッダファイルのインストール
   become: yes
-  yum:
-    name='postgresql-server,postgresql-devel,python3-psycopg2'
+  ansible.builtin.dnf:
+    name: 'postgresql-server,postgresql-devel,python3-psycopg2'
+    state: present
+    
 
 - name: Apacheとヘッダファイルのインストール
   become: yes
-  yum:
-    name='httpd,httpd-devel'
+  ansible.builtin.dnf:
+    name: 'httpd,httpd-devel'
+    state: present
 
 - name: powertoolのインストール
   shell: dnf config-manager --set-enabled powertools warn=no
 
 - name: ImageMagickとヘッダファイル・日本語フォントのインストール
   become: yes
-  yum:
-    name='ImageMagick,ImageMagick-devel,google-noto-sans-cjk-jp-fonts'
+  ansible.builtin.dnf:
+    name: 'ImageMagick,ImageMagick-devel,google-noto-sans-cjk-jp-fonts'
+    state: present
 
 - name: そのほかのツールのインストール
   become: yes
-  yum:
-    name='subversion,git,which'
+  ansible.builtin.dnf:
+    name: 'subversion,git,which'
+    state: present
 
 - name: 作業ディレクトリ作成
   file: path={{ work_dir }}
