@@ -36,7 +36,7 @@
 
 - name: 開発ツールのインストール
   become: yes
-   ansible.builtin.dnf:
+  ansible.builtin.dnf:
     name: '@Development Tools'
     state: present
 
