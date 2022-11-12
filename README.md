@@ -26,7 +26,11 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ## システム構成
 
 * Redmine 5.0 Stable (from git)
+<<<<<<< HEAD
 * CentOS 8.0-stream or Rocky Linux 8.6
+=======
+* CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.3 (8.6と8.7はNGです)
+>>>>>>> AlmaLinux
 * PostgreSQL
 * Apache
 
@@ -47,9 +51,40 @@ yum install -y ansible git
 yum install -y policycoreutils selinux-policy-targeted firewalld sudo
 ===========================================================================
 
+<<<<<<< HEAD
 ```
 
 Rocky Linuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
+=======
+================== AlmaLinux8.3の場合は上記ではなく下記インストールを行う======
+リポジトリ設定について、ほとんどの（全ての？）ミラーサーバは8.6以降の情報しか
+持っていないようですので、
+8.3は、AlmaLinux公式のサーバから取得するしかないようです。
+ミラーリング設定を外して、蒸気サーバをalmalinux.repoを適当に編集してくださいｗ
+
+githubにALmaLinux8.3の検証に使った際のyumリポジトリ定義を入れてありますので参考にしていただければ。
+下記ファイルを編集です。
+
+/etc/yum.repo.d/almalinux.repo
+
+https://repo.almalinux.org/vault/8.3/BaseOS/x86_64/os/
+
+https://repo.almalinux.org/vault/8.3/AppStream/x86_64/os/
+
+dnf update -y(行うとなぜかバージョンが上がるのでしないほうがいいかも)
+
+dnf install -y epel-release glibc-locale-source
+dnf install -y git
+
+dnf install -y python38
+pip3 install setuptools-rust wheel
+pip3 install --upgrade pip
+python3 -m pip install ansible
+===========================================================================
+```
+
+Rocky LinuxとAlmaLinuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
+>>>>>>> AlmaLinux
 
 ### playbookのダウンロード
 
