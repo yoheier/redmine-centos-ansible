@@ -52,7 +52,7 @@ yum install -y policycoreutils selinux-policy-targeted firewalld sudo
 リポジトリ設定について、ほとんどの（全ての？）ミラーサーバは8.6以降の情報しか
 持っていないようですので、
 8.3は、AlmaLinux公式のサーバから取得するしかないようです。
-ミラーリング設定を外して、蒸気サーバをalmalinux.repoを適当に編集してくださいｗ
+ミラーリング設定を外して、公式サーバをalmalinux.repoを適当に編集してくださいｗ
 
 githubにALmaLinux8.3の検証に使った際のyumリポジトリ定義を入れてありますので参考にしていただければ。
 下記ファイルを編集です。
