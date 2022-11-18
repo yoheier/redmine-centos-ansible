@@ -1,4 +1,4 @@
-# redmine-centos-ansible
+# redmine-centos-ansible for AmazonLinux2
 
 | :warning: ブランチつくったばっかりです。何の変更もしていないので動きません！！！ |
 | --- |
