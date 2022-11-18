@@ -1,6 +1,6 @@
 # redmine-centos-ansible
 
-| :warning: インストールとadminでのログインは確認していますが、細かい動作は確認していません。細かいところが動かなかったらごめんなさい。 |
+| :warning: ブランチつくったばっかりです。何の変更もしていないので動きません！！！ |
 | --- |
 
 最小構成でインストールしたCentOS8 Clone系OSにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
