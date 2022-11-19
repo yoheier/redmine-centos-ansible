@@ -26,14 +26,14 @@
   become: yes
   service: name=mariadb state=started enabled=yes
 
-- name: 匿名ユーザ削除
-  become: yes
-  mysql_user:
-    login_user: "{{ admin_user_name }}"
-    login_password: "{{ admin_user_password }}"
+- name: 匿名ユーザー削除
+  community.mysql.mysql_user:
     name: ''
     host_all: yes
     state: absent
+  register:
+    result
+  ignore_errors: true
 
 - name: エラー処理
   become: yes

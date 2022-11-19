@@ -4,5 +4,7 @@ production:
   host: localhost
   username: redmine
   password: "{{ db_passwd_redmine }}"
-  encoding: ututf8mb4f8
   pool: 5
+  charset: utf8mb4
+  collation: utf8mb4_bin
+  encoding: utf8mb4
