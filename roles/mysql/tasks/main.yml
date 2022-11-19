@@ -35,11 +35,6 @@
     result
   ignore_errors: true
 
-- name: エラー処理
-  become: yes
-  fail: msg="デフォルトのrootユーザーでの接続に失敗しました。MariaDBがインストール直後の状態ではありません。Redmineのインストールを中止します。"
-  when: result.failed is defined
-
 - name: リモートからのrootログインを禁止
   become: yes
   mysql_user:
