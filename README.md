@@ -1,6 +1,6 @@
-# redmine-centos-ansible for AmazonLinux2
+# redmine-centos-ansible
 
-| :warning: ブランチつくったばっかりです。何の変更もしていないので動きません！！！ |
+| :warning: DBをmysqlで動作させるためのテストブランチです。 動作保証等は全くありません。下記の記述も全部うそっこです。|
 | --- |
 
 最小構成でインストールしたCentOS8 Clone系OSにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
