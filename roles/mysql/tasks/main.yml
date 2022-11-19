@@ -15,10 +15,11 @@
   template: src=my.cnf dest=/etc/my.cnf owner=root group=root mode=0644
 
 - name: MariaDB 起動・自動起動設定
-    become: yes
+  become: yes
   service: name=mariadb state=started enabled=yes
 
 - name: 匿名ユーザ削除
+  become: yes
   mysql_user:
     login_user: "{{ admin_user_name }}"
     login_password: "{{ admin_user_password }}"
@@ -27,32 +28,38 @@
     state: absent
 
 - name: エラー処理
+  become: yes
   fail: msg="デフォルトのrootユーザーでの接続に失敗しました。MariaDBがインストール直後の状態ではありません。Redmineのインストールを中止します。"
   when: result.failed is defined
 
 - name: リモートからのrootログインを禁止
+  become: yes
   mysql_user:
     name=root
     host={{ ansible_fqdn }}
     state=absent
 
 - name: testデータベース 削除
+  become: yes
   mysql_db:
     name=test
     state=absent
 
 - name: Redmine用データベース作成
+  become: yes
   mysql_db:
     name: redmine
     encoding: utf8mb4
 
 - name: Redmine用ユーザー作成
+  become: yes
   mysql_user:
     name=redmine
     password={{ db_passwd_redmine }}
     priv=redmine.*:ALL
 
 - name: rootパスワード設定
+  become: yes
   mysql_user:
     name=root
     host={{ item }}
