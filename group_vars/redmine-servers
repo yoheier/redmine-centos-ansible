@@ -19,6 +19,10 @@ redmine_font_path: /usr/share/fonts/google-noto-cjk/NotoSansCJKjp-Regular.otf
 # Redmineで使用するlocale
 redmine_locale: ja_JP.UTF-8
 
+# Redmineで使用するDatabase
+#redmiene_db: postgres
+redmiene_db: mysql
+
 # pg_hba.confのパス
 pg_hba_conf_path: /var/lib/pgsql/data/pg_hba.conf
 

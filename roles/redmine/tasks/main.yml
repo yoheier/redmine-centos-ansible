@@ -1,18 +1,30 @@
 - name: Redmineのソースコードをチェックアウト
   become: yes
   ansible.builtin.git:
-    repo: https://github.com/redmine/redmine.git
+#    repo: https://github.com/redmine/redmine.git
+    repo: {{ redmine_svn_url }}
     dest: /var/lib/redmine
     version: 5.0-stable
 
-- name: database.ymlの作成
+- name: database.ymlの作成(postgres)
   become: yes
   template:
-    src=database.yml
+    src=database.yml.pg
     dest={{ redmine_dir }}/config/database.yml
     force=no
   register:
     result_database_yml
+  when: redmiene_db=="postgres"
+
+  - name: database.ymlの作成(mysql)
+  become: yes
+  template:
+    src=database.yml.my
+    dest={{ redmine_dir }}/config/database.yml
+    force=no
+  register:
+    result_database_yml
+  when: redmiene_db=="mysql"
 
 - name: configuration.ymlの作成
   become: yes

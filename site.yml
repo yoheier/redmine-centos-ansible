@@ -2,7 +2,13 @@
 
   roles:
     - system
-    - pg
+    
+    - role: pg
+      when: redmiene_db == "postgres"
+
+    - role: mysql
+      when: redmiene_db == "mysql"
+    
     - ruby
     - redmine
     - apache
