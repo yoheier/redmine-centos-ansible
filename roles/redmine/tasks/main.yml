@@ -16,7 +16,7 @@
     result_database_yml
   when: redmiene_db=="postgres"
 
-  - name: database.ymlの作成(mysql)
+- name: database.ymlの作成(mysql)
   become: yes
   template:
     src=database.yml.my
