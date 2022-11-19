@@ -2,7 +2,8 @@
   become: yes
   ansible.builtin.git:
 #    repo: https://github.com/redmine/redmine.git
-    repo: {{ redmine_svn_url }}
+    repo: 
+      - {{ redmine_svn_url }}
     dest: /var/lib/redmine
     version: 5.0-stable
 
