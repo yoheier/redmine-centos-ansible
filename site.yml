@@ -4,10 +4,10 @@
     - system
     
     - role: pg
-      when: redmiene_db == "postgres"
+      when: redmine_db == "postgres"
 
     - role: mysql
-      when: redmiene_db == "mysql"
+      when: redmine_db == "mysql"
     
     - ruby
     - redmine

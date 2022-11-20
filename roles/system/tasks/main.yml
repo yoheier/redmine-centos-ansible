@@ -51,7 +51,7 @@
   ansible.builtin.dnf:
     name: 'postgresql-server,postgresql-devel,python3-psycopg2'
     state: present
-  when: redmiene_db == "postgres"    
+  when: redmine_db == "postgres"    
 
 - name: Apacheとヘッダファイルのインストール
   become: yes
