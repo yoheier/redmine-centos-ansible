@@ -1,6 +1,6 @@
 # redmine-centos-ansible
 
-| :warning: DBをmysqlで動作させるためのテストブランチです。 動作保証等は全くありません。下記の記述も全部うそっこです。|
+| :warning: インストールとadminでのログインは確認していますが、細かい動作は確認していません。細かいところが動かなかったらごめんなさい。 |
 | --- |
 
 最小構成でインストールしたCentOS8 Clone系OSにRedmine5 stableを自動インストールするためのAnsibleプレイブックです。
@@ -28,8 +28,10 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 * Redmine 5.0 Stable (from git)
 * CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.3 (8.6と8.7はNGです)
-* PostgreSQL
+* PostgreSQL or mysql(madiaDB)
 * Apache
+
+**PostgreSQLとmysqlを選択できるようにプレイブックを変更しました**
 
 
 ## Redmineのインストール手順
@@ -83,9 +85,20 @@ Rocky LinuxとAlmaLinuxの場合、大抵カーネルの更新が入ると思い
 git clone https://github.com/yoheier/redmine-centos-ansible.git
 ```
 
-### PostgreSQLに設定するパスワードの変更
+### Databaseに設定するパスワードの変更
 
-ダウンロードしたプレイブック内のファイル `group_vars/redmine-servers` をエディタで開き、 `db_passwd_redmine` を適当な内容に変更してください。これはPostgreSQLのRedmine用ユーザー redmine に設定されるパスワードです。
+ダウンロードしたプレイブック内のファイル `group_vars/redmine_servers` をエディタで開き、 `db_passwd_redmine` を適当な内容に変更してください。これはDatabaseのRedmine用ユーザー redmine に設定されるパスワードです。
+
+### Databaseの選択
+
+下記の用にデフォルトではmysql(mariaDB)が選択されています。
+PostgreSQLで入れる場合はコメントを切り替えてください。
+
+```
+# Redmineで使用するDatabase
+#redmine_db: postgres
+redmine_db: mysql
+```
 
 ### playbook実行
 
