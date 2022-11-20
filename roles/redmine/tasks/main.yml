@@ -15,7 +15,7 @@
     force=no
   register:
     result_database_pg_yml
-  when: redmiene_db=="postgres"
+  when: redmine_db=="postgres"
 
 - name: database.ymlの作成(mysql)
   become: yes
@@ -25,7 +25,7 @@
     force=no
   register:
     result_database_mysql_yml
-  when: redmiene_db=="mysql"
+  when: redmine_db=="mysql"
 
 - name: configuration.ymlの作成
   become: yes
