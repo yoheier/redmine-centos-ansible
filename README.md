@@ -21,6 +21,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 [Redmine 3.4をCentOS 7.3にインストールする手順](http://blog.redmine.jp/articles/3_4/install/centos/)
 
 経緯等については私のqiita記事をご参照いただければ。
+
 [Redmine5-stable系をCentOS8Clone系OSにインストールするAnsibleプレイブック作ってみた](https://qiita.com/yoheier/items/7df934c8afe0eabf5576)
 
 
