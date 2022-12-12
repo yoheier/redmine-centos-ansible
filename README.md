@@ -8,7 +8,7 @@
 以下OSでの動作を確認しています
 - CentOS8-stream
 - Rocky Linux 8.6 (サポート終了予定日:2029年5月31日)
-- AlmaLinux-8.3
+- AlmaLinux-8.7 (2022/11/21 boot.isoからインストールした最小構成で確認）
 
 コマンド5個実行するだけで、あとはしばらく放置すればインストールが完了します。
 
@@ -21,13 +21,14 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 [Redmine 3.4をCentOS 7.3にインストールする手順](http://blog.redmine.jp/articles/3_4/install/centos/)
 
 経緯等については私のqiita記事をご参照いただければ。
+
 [Redmine5-stable系をCentOS8Clone系OSにインストールするAnsibleプレイブック作ってみた](https://qiita.com/yoheier/items/7df934c8afe0eabf5576)
 
 
 ## システム構成
 
 * Redmine 5.0 Stable (from git)
-* CentOS 8.0-stream or Rocky Linux 8.6 or AlmaLinux-8.3 (8.6と8.7はNGです)
+* CentOS 8.0-stream or Rocky Linux 8.6 or ~~AlmaLinux-8.3 (8.6と8.7はNGです)~~ AlmaLinux-8.7（なんかうごいた）
 * PostgreSQL or mysql(madiaDB)
 * Apache
 
@@ -41,41 +42,16 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ### Ansibleとgitのインストール
 
-```
+
+ ```
 yum update -y
 yum install -y epel-release glibc-locale-source
 yum install -y ansible git
 
-===================== Dockerの場合は以下も実行する===========================
-yum install -y policycoreutils selinux-policy-targeted firewalld sudo
-===========================================================================
+ ```
+ 
+**PostgreSQLとmysqlを選択できるようにプレイブックを変更しました**
 
-================== AlmaLinux8.3の場合は上記ではなく下記インストールを行う======
-リポジトリ設定について、ほとんどの（全ての？）ミラーサーバは8.6以降の情報しか
-持っていないようですので、
-8.3は、AlmaLinux公式のサーバから取得するしかないようです。
-ミラーリング設定を外して、公式サーバをalmalinux.repoを適当に編集してくださいｗ
-
-githubにALmaLinux8.3の検証に使った際のyumリポジトリ定義を入れてありますので参考にしていただければ。
-下記ファイルを編集です。
-
-/etc/yum.repo.d/almalinux.repo
-
-https://repo.almalinux.org/vault/8.3/BaseOS/x86_64/os/
-
-https://repo.almalinux.org/vault/8.3/AppStream/x86_64/os/
-
-dnf update -y(行うとなぜかバージョンが上がるのでしないほうがいいかも)
-
-dnf install -y epel-release glibc-locale-source
-dnf install -y git
-
-dnf install -y python38
-pip3 install setuptools-rust wheel
-pip3 install --upgrade pip
-python3 -m pip install ansible
-===========================================================================
-```
 
 Rocky LinuxとAlmaLinuxの場合、大抵カーネルの更新が入ると思いますので、rebootしてからplaybookを実行してください。
 
@@ -114,13 +90,15 @@ ansible-playbook -i hosts site.yml
 webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
 
 ## 言い訳
-AlmaLinuxもとりかかってみましたが、8.6 8.7とも、ミラーサーバのリポジトリがごちゃごちゃで、AppStreamの
-メタ情報が間違っていたりします。
-また、"Development tools"グループインストールに失敗するのでどうしたものやら、です。
+~~AlmaLinuxもとりかかってみましたが、8.6 8.7とも、ミラーサーバのリポジトリがごちゃごちゃで、AppStreamの~~
+~~メタ情報が間違っていたりします。~~
+~~また、"Development tools"グループインストールに失敗するのでどうしたものやら、です。~~
 
-8.3で何とか動きましたが、サポート期間とかどうなんでしょうねぇ……
+~~8.3で何とか動きましたが、サポート期間とかどうなんでしょうねぇ……~~
 
 **なんか公式リポジトリ見たら、8.6の整合性が取れてるようにみえたので時間があったら8.6での動確します(2022/11/18)**
+
+**boot.isoから最小構成でインストールしたらうごきました。なぜだ。一応Adminでのログインとチケット作成は確認できたので大丈夫だろう的な。(2022/11/21)**
 
 こだわりがなければRockyのほうがお勧めかもです。
 
