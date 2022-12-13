@@ -8,7 +8,6 @@ RUN dnf -y install ansible git
 RUN dnf install -y which selinux-policy-targeted libselinux-utils policycoreutils firewalld scl-utils initscripts iproute
 
 RUN dnf groups mark install -y "Development Tools" 
-RUN dnf groups mark convert -y "Development Tools" 
 RUN dnf group install -y "Development Tools"
 
 RUN cd tmp
