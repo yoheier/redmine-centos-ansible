@@ -10,3 +10,9 @@ RUN dnf install -y which selinux-policy-targeted libselinux-utils policycoreutil
 RUN dnf groups mark install -y "Development Tools" 
 RUN dnf groups mark convert -y "Development Tools" 
 RUN dnf group install -y "Development Tools"
+
+RUN cd tmp
+RUN git clone https://github.com/yoheier/redmine-centos-ansible.git
+
+RUN cd redmine-centos-ansible
+RUN ansible-playbook -i hosts site.yml
