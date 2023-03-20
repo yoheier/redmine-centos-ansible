@@ -6,12 +6,12 @@
   changed_when: false
   failed_when: result.rc not in [0, 1]
 
-- name: 起動時にSELinux無効化 (/etc/sysconfig/selinux)
+- name: 起動時にSELinuxをpermissiveに（RHEL9備え） (/etc/sysconfig/selinux)
   become: yes
-  selinux: state=disabled
+  selinux: state=permissive
   when: result.rc == 0
 
-- name: SELinux無効化 (setenforce)
+- name: SELinux無効化 (setenforce) これは引数0でPermissiveにしているのでそのまま。
   become: yes
   command: setenforce 0
   when: result.rc == 0
