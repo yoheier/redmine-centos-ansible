@@ -63,7 +63,7 @@
     state: present
 
 - name: powertoolのインストール
-  shell: dnf config-manager --set-enabled powertools warn=no
+  command: dnf config-manager --set-enabled powertools
 
 - name: ImageMagickとヘッダファイル・日本語フォントのインストール
   become: yes
